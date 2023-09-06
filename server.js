@@ -1,9 +1,9 @@
 const express = require('express');
-const app = express();
+
 const mongoose = require('mongoose');
 const cors = require('cors');
-app.use(cors());
-app.use(express.json());
+
+
 require('dotenv/config');
 
 
@@ -21,23 +21,26 @@ const categoriaRouter = require('./routes/categoriaRoute');
     const userRouter = require('./routes/userRoute');
 const {login} = require('./middleware/login');
 const {auth} = require('./middleware/auth');
+const app = express();
+app.use(express.json());
+app.use(cors());
 //routes
 app.use('/', login);
-app.use('/',auth, merceRouter);
-app.use('/',auth, ordineRouter);
-app.use('/',auth, categoriaRouter);
- app.use('/',auth, acquirenteRouter);
- app.use('/',auth, userRouter);
+app.use('/', merceRouter);
+app.use('/', ordineRouter);
+app.use('/', categoriaRouter);
+ app.use('/', acquirenteRouter);
+ app.use('/', userRouter);
 
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Errore interno del server');
-});
+// app.use((err, req, res, next) => {
+//     console.error(err.stack);
+//     res.status(500).send('Errore interno del server');
+// });
 
 
 //listen to server
-app.listen(process.env.PORT || 5050, () => {
-    console.log(`Server is running on port: ${process.env.PORT || 5050}`);
+app.listen(process.env.PORT || 5052, () => {
+    console.log(`Server is running on port: ${process.env.PORT || 5052}`);
   }
   );
   

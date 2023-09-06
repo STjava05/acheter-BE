@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const Acquirenti= require('../models/acquirenti');
+const Acquirenti = require('../models/acquirenti');
 
 
 router.post('/acquirenti', async (req, res) => {
@@ -14,7 +14,7 @@ router.post('/acquirenti', async (req, res) => {
         indirizzo: req.body.indirizzo,
         cap: req.body.cap,
         citta: req.body.citta,
-        email: req.body.email
+        
     });
     try {
         const savedAcquirenti = await acquirenti.save();
@@ -25,9 +25,15 @@ router.post('/acquirenti', async (req, res) => {
 });
 
 router.get('/acquirenti', async (req, res) => {
+
+
     try {
         const acquirenti = await Acquirenti.find();
-        res.json(acquirenti);
+        if(!acquirenti) throw Error('Nessun acquirente trovato');
+        res.status(200).send({
+            statusCode: 200,
+            acquirenti: acquirenti
+        })
     } catch (error) {
         res.json({ message: error });
     }
@@ -64,7 +70,7 @@ router.put('/acquirenti/:id', async (req, res) => {
                     indirizzo: req.body.indirizzo,
                     cap: req.body.cap,
                     citta: req.body.citta,
-                    email: req.body.email
+                   
                 }
             }
         );

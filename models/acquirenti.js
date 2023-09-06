@@ -30,11 +30,11 @@ const AcquirentiSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email : {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'User',
-        required: true
+    // email : {
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:'User',
+    //     required: true
 
-    },
+    // },
 });
 module.exports = mongoose.model('Acquirenti', AcquirentiSchema, 'acquirenti');

@@ -1,9 +1,0 @@
-POST http://localhost:5050/user HTTP/1.1
-
-Content-Type: application/json
-
-{
-    "email": "ouzinnbis@hotmail.it",
-    "tipoligiaUtenza": "administrator",
-    "password": "zeus",
-}

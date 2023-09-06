@@ -5,12 +5,15 @@ const merce = require('../models/merce');
 
 router.post('/merce', async (req, res) => {
     const merce = new merce({
-        codiceMerce: req.body.codiceMerce,
-        nomeMerce: req.body.nomeMerce,
-        descrizioneMerce: req.body.descrizioneMerce,
-        prezzoMerce: req.body.prezzoMerce,
-        quantitaMerce: req.body.quantitaMerce,
-        codiceCategoria: req.body.codiceCategoria
+        
+        nome: req.body.nome,
+        descrizione: req.body.descrizione,
+        prezzo: req.body.prezzo,
+        quantitaDisponibile: req.body.quantitaDisponibile,
+        provenienza: req.body.provenienza,
+        categoria: req.body.categoria,
+        url: req.body.url
+
     });
     try {
         const savedMerce = await merce.save();
@@ -53,12 +56,14 @@ router.put('/merce/:id', async (req, res) => {
             { _id: req.params.id },
             {
                 $set: {
-                    codiceMerce: req.body.codiceMerce,
-                    nomeMerce: req.body.nomeMerce,
-                    descrizioneMerce: req.body.descrizioneMerce,
-                    prezzoMerce: req.body.prezzoMerce,
-                    quantitaMerce: req.body.quantitaMerce,
-                    codiceCategoria: req.body.codiceCategoria
+                    nome: req.body.nome,
+                    descrizione: req.body.descrizione,
+                    prezzo: req.body.prezzo,
+                    quantitaDisponibile: req.body.quantitaDisponibile,
+                    categoria: req.body.categoria,
+                    provenienza: req.body.provenienza,
+                    url: req.body.url
+                  
                 }
             }
         );

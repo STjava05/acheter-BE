@@ -5,29 +5,31 @@ const User = require('../models/userModel');
 
 
 module.exports.login = async (req, res, next) => {
-    User.findOne({ email: req.body.email }, (err, user) => {
-        if (err) {
-            res.status(500).json({ message: err.message });
-            return;
-        }
-        if (!user) {
-            res.status(404).json({ message: 'Utente non trovato' });
-            return;
-        }
-        const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        if (!passwordIsValid) {
-            res.status(401).json({ message: 'Password non valida' });
-            return;
-        }
-        const token = jwt.sign({ id: user._id }, process.env.JWT_KEY, {
-            expiresIn: 86400 // 24 ore
-        });
-        res.status(200).json({
-            id: user._id,
-            email: user.email,
-            accessToken: token
-        });
+ const utente= User.findOne({ email: req.body.email } );
+
+   (err, user) => {
+    if (err) {
+        res.status(500).json({ message: err.message });
+        return;
+    }
+    if (!user) {
+        res.status(404).json({ message: 'Utente non trovato' });
+        return;
+    }
+    const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+    if (!passwordIsValid) {
+        res.status(401).json({ message: 'Password non valida' });
+        return;
+    }
+    const token = jwt.sign({ id: user._id }, process.env.JWT_KEY, {
+        expiresIn: 86400 // 24 ore
     });
+    res.status(200).json({
+        id: user._id,
+        email: user.email,
+        accessToken: token
+    });
+}
 }
 
 

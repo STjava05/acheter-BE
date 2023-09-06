@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const MerceSchema = mongoose.Schema({
-    codiceProdotto: {
+    nome: {
         type: String,
         required: true,
         unique: true
@@ -14,7 +14,7 @@ const MerceSchema = mongoose.Schema({
         required: true
 
     },
-    codiceCategoria: {
+    Categoria: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Categoria',
         required: true
