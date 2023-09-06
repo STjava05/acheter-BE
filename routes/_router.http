@@ -1,18 +1,15 @@
 GET http://localhost:5052/acquirenti 
 
-########
-POST http://localhost:5050/acquirenti HTTP/1.1
+######
+POST http://localhost:5052/acquirenti/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "codiceAcquirenti": "001",
-    "denominazione": "srl",
-    "indirizzo": "via della republica",
-    "cap": 51031,
+    "codiceAcquirente": "002",
+    "denominazione": "spa",
+    "indirizzo": "via Roma",
+    "cap": 00050,
     "partitaIva": 1325487234575,
     "codiceFiscale": "MBNSY3546Y343D",
-    "citta": "firenze"
+    "citta": "roma"
 }
-
-########
-GET http://localhost:5052/merce
