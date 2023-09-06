@@ -3,9 +3,13 @@ const CategoriaSchema = mongoose.Schema({
     codiceCategoria: {
         type: String,
         required: true,
-        unique: true
+        
     },
     descrizione: {
+        type: String,
+        required: true
+    },
+    categoria: {
         type: String,
         required: true
     },

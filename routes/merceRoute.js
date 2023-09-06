@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const merce = require('../models/merce');
+const Merce = require('../models/merce');
 
 
 router.post('/merce', async (req, res) => {
-    const merce = new merce({
+    const merce = new Merce({
         
         nome: req.body.nome,
         descrizione: req.body.descrizione,
@@ -25,7 +25,7 @@ router.post('/merce', async (req, res) => {
 
 router.get('/merce', async (req, res) => {
     try {
-        const merce = await merce.find();
+        const merce = await Merce.find();
         res.json(merce);
     } catch (error) {
         res.json({ message: error });
@@ -34,7 +34,7 @@ router.get('/merce', async (req, res) => {
 
 router.get('/merce/:id', async (req, res) => {
     try {
-        const merce = await merce.findById(req.params.id);
+        const merce = await Merce.findById(req.params.id);
         res.json(merce);
     } catch (error) {
         res.json({ message: error });
@@ -43,7 +43,7 @@ router.get('/merce/:id', async (req, res) => {
 
 router.delete('/merce/:id', async (req, res) => {
     try {
-        const removedMerce = await merce.remove({ _id: req.params.id });
+        const removedMerce = await Merce.remove({ _id: req.params.id });
         res.json(removedMerce);
     } catch (error) {
         res.json({ message: error });
@@ -52,7 +52,7 @@ router.delete('/merce/:id', async (req, res) => {
 
 router.put('/merce/:id', async (req, res) => {
     try {
-        const updatedMerce = await merce.updateOne(
+        const updatedMerce = await Merce.updateOne(
             { _id: req.params.id },
             {
                 $set: {

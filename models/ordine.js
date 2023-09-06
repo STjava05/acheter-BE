@@ -3,16 +3,14 @@ const OrdineSchema = mongoose.Schema({
     codiceOrdine: {
         type: String,
         required: true,
-        unique: true
+        
     },
     codiceAcquirenti: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Acquirenti',
+        type: Number,
         required: true
     },
     codiceProdotto: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Merce',
+        type: Number,
         required: true
     },
     quantita: {

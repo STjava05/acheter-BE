@@ -1,10 +1,10 @@
 GET http://localhost:5052/acquirenti 
 
 ######
-POST http://localhost:5052/acquirenti/create HTTP/1.1
+POST http://localhost:5052/acquirenti HTTP/1.1
 Content-Type: application/json
 
-{
+{   
     "codiceAcquirente": "002",
     "denominazione": "spa",
     "indirizzo": "via Roma",
@@ -13,3 +13,43 @@ Content-Type: application/json
     "codiceFiscale": "MBNSY3546Y343D",
     "citta": "roma"
 }
+
+######
+POST http://localhost:5052/merce HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome": "002",
+    "descrizione": "merce",
+    "categoria": "alimentari",
+    "provenienza": "italia",
+    "url":"http://www.google.it",
+    "prezzo": 10,
+    "quantitaDisponibile": 10
+
+
+}
+
+######
+POST http://localhost:5052/ordine HTTP/1.1
+Content-Type: application/json
+
+{
+    "codiceOrdine": "002",
+    "dataOrdine": "2020-01-01",
+    "codiceProdotto": 3,
+    "quantita": 10,
+    "prezzoTotale": 100,
+    "codiceAcquirenti": 3
+}
+
+######
+POST http://localhost:5052/categoria HTTP/1.1
+Content-Type: application/json
+
+{
+    "codiceCategoria": "002",
+    "descrizione": "merce",
+    "categoria": "Bellezza"
+}
+

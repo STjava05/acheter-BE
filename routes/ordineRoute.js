@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const ordine = require('../models/ordine');
+const Ordine = require('../models/ordine');
 
 
 router.post('/ordine', async (req, res) => {
-    const ordine = new ordine({
+    const ordine = new Ordine({
         codiceOrdine: req.body.codiceOrdine,
         codiceAcquirenti: req.body.codiceAcquirenti,
         codiceProdotto: req.body.codiceProdotto,
@@ -22,7 +22,7 @@ router.post('/ordine', async (req, res) => {
 
 router.get('/ordine', async (req, res) => {
     try {
-        const ordine = await ordine.find();
+        const ordine = await Ordine.find();
         res.json(ordine);
     } catch (error) {
         res.json({ message: error });
@@ -31,7 +31,7 @@ router.get('/ordine', async (req, res) => {
 
 router.get('/ordine/:id', async (req, res) => {
     try {
-        const ordine = await ordine.findById(req.params.id);
+        const ordine = await Ordine.findById(req.params.id);
         res.json(ordine);
     } catch (error) {
         res.json({ message: error });
@@ -40,7 +40,7 @@ router.get('/ordine/:id', async (req, res) => {
 
 router.delete('/ordine/:id', async (req, res) => {
     try {
-        const removedOrdine = await ordine.remove({ _id: req.params.id });
+        const removedOrdine = await Ordine.remove({ _id: req.params.id });
         res.json(removedOrdine);
     } catch (error) {
         res.json({ message: error });
@@ -49,7 +49,7 @@ router.delete('/ordine/:id', async (req, res) => {
 
 router.put('/ordine/:id', async (req, res) => {
     try {
-        const updatedOrdine = await ordine.updateOne(
+        const updatedOrdine = await Ordine.updateOne(
             { _id: req.params.id },
             {
                 $set: {

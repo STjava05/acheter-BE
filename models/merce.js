@@ -3,23 +3,24 @@ const MerceSchema = mongoose.Schema({
     nome: {
         type: String,
         required: true,
-        unique: true
+       
     },
     descrizione: {
         type: String,
         required: true
+        
     },
     url : {
         type: String,
         required: true
 
     },
-    Categoria: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Categoria',
+    categoria: {
+        type:  String,
+        
         required: true
     },
-    provezienza: {
+    provenienza: {
         type: String,
         required: true
     },

@@ -29,7 +29,7 @@ acquirentiRouter.get("/acquirenti", async (req, res) => {
   }
 });
 
-acquirentiRouter.post("/acquirenti/create", async (req, res) => {
+acquirentiRouter.post("/acquirenti", async (req, res) => {
   const newAcquirente = new AcquirentiModel({
     codiceAcquirente: req.body.codiceAcquirente,
     denominazione: req.body.denominazione,

@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const cors = require("cors");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -18,13 +18,13 @@ const { auth } = require("./middleware/auth");
 const app = express();
 app.use(express.json());
 
-// app.use(cors());
+app.use(cors());
 
 //routes
+app.use("/", ordineRouter);
+app.use("/", merceRouter);
 app.use("/", acquirenteRouter);
 app.use("/", login);
-app.use("/", merceRouter);
-app.use("/", ordineRouter);
 app.use("/", categoriaRouter);
 app.use("/", userRouter);
 
