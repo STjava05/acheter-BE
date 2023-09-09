@@ -3,7 +3,7 @@ const router = express.Router();
 const Merce = require('../models/merce');
 
 
-router.post('/merce', async (req, res) => {
+router.post('/merce/create', async (req, res) => {
     const merce = new Merce({
         
         nome: req.body.nome,
@@ -32,7 +32,7 @@ router.get('/merce', async (req, res) => {
     }
 });
 
-router.get('/merce/:id', async (req, res) => {
+router.get('/merce/byId/:id', async (req, res) => {
     try {
         const merce = await Merce.findById(req.params.id);
         res.json(merce);
@@ -41,7 +41,7 @@ router.get('/merce/:id', async (req, res) => {
     }
 });
 
-router.delete('/merce/:id', async (req, res) => {
+router.delete('/merce/deleteOne/:id', async (req, res) => {
     try {
         const removedMerce = await Merce.remove({ _id: req.params.id });
         res.json(removedMerce);
@@ -50,7 +50,7 @@ router.delete('/merce/:id', async (req, res) => {
     }
 });
 
-router.put('/merce/:id', async (req, res) => {
+router.put('/merce/edit/:id', async (req, res) => {
     try {
         const updatedMerce = await Merce.updateOne(
             { _id: req.params.id },

@@ -29,7 +29,7 @@ acquirentiRouter.get("/acquirenti", async (req, res) => {
   }
 });
 
-acquirentiRouter.post("/acquirenti", async (req, res) => {
+acquirentiRouter.post("/acquirenti/create", async (req, res) => {
   const newAcquirente = new AcquirentiModel({
     codiceAcquirente: req.body.codiceAcquirente,
     denominazione: req.body.denominazione,
@@ -56,7 +56,7 @@ acquirentiRouter.post("/acquirenti", async (req, res) => {
   }
 });
 
-acquirentiRouter.get("/acquirenti/:id", async (req, res) => {
+acquirentiRouter.get("/acquirenti/byId/:id", async (req, res) => {
   try {
     const acquirenti = await AcquirentiModel.findById(req.params.id);
     res.json(acquirenti);
@@ -65,7 +65,7 @@ acquirentiRouter.get("/acquirenti/:id", async (req, res) => {
   }
 });
 
-acquirentiRouter.delete("/acquirenti/:id", async (req, res) => {
+acquirentiRouter.delete("/acquirenti/deleteOne/:id", async (req, res) => {
   try {
     const removedAcquirenti = await AcquirentiModel.remove({ _id: req.params.id });
     res.json(removedAcquirenti);
@@ -74,7 +74,7 @@ acquirentiRouter.delete("/acquirenti/:id", async (req, res) => {
   }
 });
 
-acquirentiRouter.put("/acquirenti/:id", async (req, res) => {
+acquirentiRouter.put("/acquirenti/edit/:id", async (req, res) => {
   try {
     const updatedAcquirenti = await AcquirentiModel.updateOne(
       { _id: req.params.id },

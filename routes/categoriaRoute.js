@@ -4,7 +4,7 @@ const Categoria = require('../models/categoria');
 
 
 
-router.post('/categoria', async (req, res) => {
+router.post('/categoria/create', async (req, res) => {
     const categoria = new Categoria({
         codiceCategoria: req.body.codiceCategoria,
         categoria: req.body.categoria,
@@ -27,7 +27,7 @@ router.get('/categoria', async (req, res) => {
     }
 });
 
-router.get('/categoria/:id', async (req, res) => {
+router.get('/categoria/byId/:id', async (req, res) => {
     try {
         const categoria = await Categoria.findById(req.params.id);
         res.json(categoria);
@@ -36,7 +36,7 @@ router.get('/categoria/:id', async (req, res) => {
     }
 });
 
-router.delete('/categoria/:id', async (req, res) => {
+router.delete('/categoria/deleteOne/:id', async (req, res) => {
     try {
         const removedCategoria = await Categoria.remove({ _id: req.params.id });
         res.json(removedCategoria);
@@ -45,7 +45,7 @@ router.delete('/categoria/:id', async (req, res) => {
     }
 });
 
-router.put('/categoria/:id', async (req, res) => {
+router.put('/categoria/edit/:id', async (req, res) => {
     try {
         const updatedCategoria = await Categoria.updateOne(
             { _id: req.params.id },

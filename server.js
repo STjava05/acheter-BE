@@ -21,11 +21,11 @@ app.use(express.json());
 app.use(cors());
 
 //routes
+app.use("/", categoriaRouter);
 app.use("/", ordineRouter);
 app.use("/", merceRouter);
 app.use("/", acquirenteRouter);
 app.use("/", login);
-app.use("/", categoriaRouter);
 app.use("/", userRouter);
 
 //connect to mongoDB
