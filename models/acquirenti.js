@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 
 const AcquirentiSchema = new mongoose.Schema(
   {
-    codiceAcquirente: {
-      type: String,
-      required: true,
-    },
+   
     denominazione: {
       type: String,
       required: true,
@@ -22,6 +19,15 @@ const AcquirentiSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+
     cap: {
       type: Number,
       required: true,

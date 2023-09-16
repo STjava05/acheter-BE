@@ -1,34 +1,61 @@
 GET http://localhost:5052/acquirenti 
 
 ######
-POST http://localhost:5052/acquirenti HTTP/1.1
+GET http://localhost:5052/merce 
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MDM0MDdlNTVjNzljZDQ5ZGU1MTQ5NiIsImVtYWlsIjoib3V6aW5AaG90bWFpbC5pdCIsImlhdCI6MTY5NDc4MDU5NywiZXhwIjoxNjk0ODY2OTk3fQ.eV4AfP6cmcoRCuhchs1wY1iY-j3HfWjO-d8PmM3bBaY
+
+
+ 
+
+########
+GET http://localhost:5052/producteur
+
+
+
+
+########
+GET http://localhost:5052/merce?page=1&pageSize=2
+
+
+########
+POST http://localhost:5052/acquirenti/create HTTP/1.1
 Content-Type: application/json
 
-{   
-    "codiceAcquirente": "002",
-    "denominazione": "spa",
-    "indirizzo": "via Roma",
-    "cap": 00050,
-    "partitaIva": 1325487234575,
-    "codiceFiscale": "MBNSY3546Y343D",
-    "citta": "roma"
+{  
+
+ "denominazione": "francois",
+    "email": "francois@yahoo.com",
+    "password": "ibou",
+    "indirizzo": "via ciliani",
+    "cap": 51031,
+    "partitaIva": 98745632114,
+    "codiceFiscale": "PRTTTR77T12H501S",
+    "citta": "pistoia"
 }
 
 ######
-POST http://localhost:5052/merce HTTP/1.1
+POST http://localhost:5052/merce/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "nome": "002",
-    "descrizione": "merce",
+    "nome": "650036ff01f53d927f93065a",
+    "descrizione": "olive",
     "categoria": "alimentari",
     "provenienza": "italia",
-    "url":"http://www.google.it",
+    "url":"https://th.bing.com/th/id/R.9585c60bce64bb3ee9ad4b771e4c0750?rik=sVjxTVQgisiV2w&pid=ImgRaw&r=0",
     "prezzo": 10,
-    "quantitaDisponibile": 10
+    "quantitaDisponibile": 120
 
 
 }
+
+######
+
+DELETE http://localhost:5052/merce/deleteOne/64f8db6b8ecf82d43f567621
+
+
+
 
 ######
 POST http://localhost:5052/ordine HTTP/1.1
@@ -44,12 +71,34 @@ Content-Type: application/json
 }
 
 ######
-POST http://localhost:5052/categoria HTTP/1.1
+DELETE http://localhost:5052/producteur/deleteOne/64ff39df7008b6bf18516827
+
+
+
+######
+POST http://localhost:5052/producteur/create HTTP/1.1
+
+Content-Type: application/json
+{
+    "avatarUrl":"https://th.bing.com/th/id/R.9585c60bce64bb3ee9ad4b771e4c0750?rik=sVjxTVQgisiV2w&pid=ImgRaw&r=0",
+    "nome": "650036ff01f53d927f93065a", 
+    "congnome":"Flelix",  
+    "paese": "senegal",
+    "numeriEttari": 7,
+    "orticolturaSpecializato": "choux-vert",
+}
+
+
+
+######
+
+POST http://localhost:5052/login HTTP/1.1
+
 Content-Type: application/json
 
 {
-    "codiceCategoria": "002",
-    "descrizione": "merce",
-    "categoria": "Bellezza"
+"email": "francois@yahoo.com",
+"password": "ibou"
 }
+
 

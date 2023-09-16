@@ -3,25 +3,21 @@ const jwt = require('jsonwebtoken');
 
 
 exports.auth = (req, res, next) => {
-    try {
-        if(process.env.DEV == 'true'){
+    const token = req.header('Authorization');
+  
+        if(!token){
+            return res.status(401).json({msg: 'No token, authorization denied'});
+        }
+        try{
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decoded.user;
             next();
-            return;
 
         }
-        const token = req.headers.authorization.split(" ")[1]; // ottieni il token dalla richiesta
-        const decodedToken = jwt.verify(token, process.env.JWT_KEY); // decodifica il token
-        const userId = decodedToken.userId; // ottieni l'ID utente dal token
-        if (req.body.userId && req.body.userId !== userId) { // se l'ID utente non corrisponde a quello del token
-             throw 'User ID non valdo';
-        } else {
-            next(); // se l'ID utente corrisponde a quello del token, passa alla prossima funzione
+        catch(err){
+            res.status(401).json({msg: 'Token is not valid'});
+
         }
-    } catch {
-        res.status(401).json({
-            error: new Error('Richiesta non valida!')
-        });
-    }
 }
 
 

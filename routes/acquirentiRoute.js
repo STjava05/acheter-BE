@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const AcquirentiModel = require("../models/acquirenti");
 
@@ -30,9 +31,14 @@ acquirentiRouter.get("/acquirenti", async (req, res) => {
 });
 
 acquirentiRouter.post("/acquirenti/create", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
   const newAcquirente = new AcquirentiModel({
-    codiceAcquirente: req.body.codiceAcquirente,
+   
     denominazione: req.body.denominazione,
+    email: req.body.email,
+    password: hashedPassword,
     partitaIva: req.body.partitaIva,
     codiceFiscale: req.body.codiceFiscale,
     indirizzo: req.body.indirizzo,
@@ -76,17 +82,29 @@ acquirentiRouter.delete("/acquirenti/deleteOne/:id", async (req, res) => {
 
 acquirentiRouter.put("/acquirenti/edit/:id", async (req, res) => {
   try {
+    if (req.body.password) {
+      // L'utente sta cercando di modificare la password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+      // Aggiorna la password hashed nel corpo della richiesta
+      req.body.password = hashedPassword;
+    }
+
     const updatedAcquirenti = await AcquirentiModel.updateOne(
       { _id: req.params.id },
       {
         $set: {
-          codiceAcquirente: req.body.codiceAcquirente,
+          // Alcuni campi dell'acquirente
           denominazione: req.body.denominazione,
+          email: req.body.email,
           partitaIva: req.body.partitaIva,
           codiceFiscale: req.body.codiceFiscale,
           indirizzo: req.body.indirizzo,
           cap: req.body.cap,
           citta: req.body.citta,
+          // Password se è stata modificata, altrimenti rimane la stessa
+          password: req.body.password || undefined,
         },
       }
     );
@@ -95,5 +113,6 @@ acquirentiRouter.put("/acquirenti/edit/:id", async (req, res) => {
     res.json({ message: error });
   }
 });
+
 
 module.exports = acquirentiRouter;
