@@ -12,11 +12,13 @@ const merceRouter = require("./routes/merceRoute");
 const ordineRouter = require("./routes/ordineRoute");
 const producteurRouter = require("./routes/producteurRoute");
 const acquirenteRouter = require("./routes/acquirentiRoute");
+  const githubRouter = require("./routes/githubRoute");
+  const googleRouter = require("./routes/googleRoute");
 
 
 
 const loginRouter = require("./routes/loginRoute");
-// const { auth } = require("./middleware/auth");
+ const { auth } = require("./middleware/auth");
 
 const app = express();
 app.use(express.json());
@@ -32,6 +34,8 @@ app.use("/", producteurRouter);
 app.use("/", ordineRouter);
 app.use("/", merceRouter);
 app.use("/", acquirenteRouter);
+ app.use("/", githubRouter);
+  app.use("/", googleRouter);
 
 
 //connect to mongoDB

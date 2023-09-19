@@ -84,7 +84,7 @@ router.post('/merce/create', async (req, res) => {
 });
 
 router.get('/merce', async (req, res) => {
-    const{page=1,pageSize=4}=req.query;
+    const{page=1,pageSize=8}=req.query;
     try {
          const totalMerce = await Merce.count();
         const merce = await Merce.find().sort({ createdAt: 'desc' })
@@ -118,12 +118,16 @@ router.get('/merce/byId/:id', async (req, res) => {
 
 router.delete('/merce/deleteOne/:id', async (req, res) => {
     try {
-        const removedMerce = await Merce.remove({ _id: req.params.id });
-        res.json(removedMerce);
+        const deletedMerce =await Merce.findByIdAndDelete(req.params.id);
+        if(!deletedMerce) 
+        return res.status(404).send('Merce non trovata');
+        res.status(200).send();
     } catch (error) {
         res.json({ message: error });
     }
 });
+
+
 
 router.put('/merce/edit/:id', async (req, res) => {
     try {
