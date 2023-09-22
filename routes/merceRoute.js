@@ -84,10 +84,17 @@ router.post('/merce/create', async (req, res) => {
 });
 
 router.get('/merce', async (req, res) => {
-    const{page=1,pageSize=8}=req.query;
+    const{page=1,pageSize=8,search=""}=req.query;
+
+
+    const query = {};
+    if(search){
+        query.nome = {$regex: search, $options: 'i'};
+    }
+
     try {
-         const totalMerce = await Merce.count();
-        const merce = await Merce.find().sort({ createdAt: 'desc' })
+         const totalMerce = await Merce.count(query);
+        const merce = await Merce.find(query).sort({ createdAt: 'desc' })
         .limit(pageSize)
         .skip((page-1)*pageSize)
         .populate('nome')
@@ -98,7 +105,8 @@ router.get('/merce', async (req, res) => {
             totalMerce: totalMerce,
             currentPage:+page,
             pageSize: +pageSize,
-            merce: merce
+            merce: merce,
+            search: search
         });
 
         

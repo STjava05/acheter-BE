@@ -5,9 +5,9 @@ const Ordine = require('../models/ordine');
 
 router.post('/ordine', async (req, res) => {
     const ordine = new Ordine({
-        codiceOrdine: req.body.codiceOrdine,
-        codiceAcquirenti: req.body.codiceAcquirenti,
-        codiceProdotto: req.body.codiceProdotto,
+        numberOrdine: req.body.numberOrdine,
+        producteur: req.body.producteur,
+        prodotto: req.body.prodotto,
         quantita: req.body.quantita,
         prezzoTotale: req.body.prezzoTotale,
         dataOrdine: req.body.dataOrdine
@@ -53,9 +53,9 @@ router.put('/ordine/:id', async (req, res) => {
             { _id: req.params.id },
             {
                 $set: {
-                    codiceOrdine: req.body.codiceOrdine,
-                    codiceAcquirenti: req.body.codiceAcquirenti,
-                    codiceProdotto: req.body.codiceProdotto,
+                   numberOrdine: req.body.numberOrdine,
+                    producteur: req.body.producteur,
+                    prodotto: req.body.prodotto,
                     quantita: req.body.quantita,
                     prezzoTotale: req.body.prezzoTotale,
                     dataOrdine: req.body.dataOrdine

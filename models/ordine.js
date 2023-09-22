@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 const OrdineSchema = mongoose.Schema({
-    codiceOrdine: {
+    numberOrdine: {
         type: String,
         required: true,
         
     },
-    codiceAcquirenti: {
+    producteur: {
         type: Number,
         required: true
     },
-    codiceProdotto: {
+    prodotto: {
         type: Number,
         required: true
     },
