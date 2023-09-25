@@ -14,6 +14,7 @@ const producteurRouter = require("./routes/producteurRoute");
 const acquirenteRouter = require("./routes/acquirentiRoute");
   const githubRouter = require("./routes/githubRoute");
   const googleRouter = require("./routes/googleRoute");
+  
 
 
 
@@ -36,7 +37,7 @@ app.use("/", merceRouter);
 app.use("/", acquirenteRouter);
  app.use("/", githubRouter);
   app.use("/", googleRouter);
-
+  
 
 //connect to mongoDB
 mongoose.connect(process.env.MONGO_DB_URL);

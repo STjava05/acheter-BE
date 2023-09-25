@@ -84,7 +84,7 @@ router.post('/merce/create', async (req, res) => {
 });
 
 router.get('/merce', async (req, res) => {
-    const{page=1,pageSize=8,search=""}=req.query;
+    const{page=1,pageSize=10,search=""}=req.query;
 
 
     const query = {};
